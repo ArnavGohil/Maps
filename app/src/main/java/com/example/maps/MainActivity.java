@@ -23,6 +23,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -53,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .addOnConnectionFailedListener(this)
                 .build();
 
-        //   MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-        //  mapFragment.getMapAsync(this);
+        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
         AutoCompleteTextView autoCompleteTextView=findViewById(R.id.qwerty);
         ArrayAdapter p=new ArrayAdapter<String>(this,R.layout.placelayout,R.id.tvplace,places);
         autoCompleteTextView.setAdapter(p);
@@ -125,9 +126,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             arrayList.add((item) avlMark[i]);
             places.add(arrayList.get(i).getTitle());
         }
-
-        a.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(n).tilt(45).zoom(16).build()),2500,null);
-
+        LatLng c=new LatLng(28.749930, 77.117471);
+        a.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(c).tilt(65).zoom(16).build()),2500,null);
+        //Yaha pe n (Current Location) dala toh nahi aa raha hai.
     }
 
     public void a(View view) {
